@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="l-stu-msg:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="l-stu-msg.war">
+      <element id="artifact" artifact-name="l-stu-msg:war exploded" />
+    </root>
+  </artifact>
+</component>
