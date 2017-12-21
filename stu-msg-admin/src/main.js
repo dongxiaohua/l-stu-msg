@@ -2,14 +2,18 @@ import babelpolyfill from 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-//import './assets/theme/theme-green/index.css'
+// import 'element-ui/lib/theme-default/index.css'
+// 换肤 自己指定的
+import './assets/theme/theme-myself/index.css'
+
 import VueRouter from 'vue-router'
 import store from './vuex/store'
 import Vuex from 'vuex'
 //import NProgress from 'nprogress'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
+
+//mock代表假数据
 import Mock from './mock'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
