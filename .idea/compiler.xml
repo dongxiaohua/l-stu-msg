@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="l-stu-msg" />
+        <module name="stu-msg-com" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="l-stu-msg" target="1.5" />
+      <module name="stu-msg-com" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

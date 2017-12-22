@@ -14,7 +14,6 @@
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/stu-msg-com/pom.xml" />
         <option value="$PROJECT_DIR$/stu-msg-web/pom.xml" />
       </set>
     </option>
