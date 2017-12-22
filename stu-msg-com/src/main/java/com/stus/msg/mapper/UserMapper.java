@@ -1,5 +1,6 @@
 package com.stus.msg.mapper;
 
+import com.stus.msg.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -8,6 +9,6 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface UserMapper {
 
-  @Select("SELECT * FROM stu_user WHERE username = {#name} AND password = {#pwd}")
-  int findAll(@Param("name")String name,@Param("pwd")String pwd);
+  @Select("SELECT * FROM stu_user WHERE username = #{username} AND password = #{pwd}")
+  User find(@Param("username")String name, @Param("pwd")String pwd);
 }

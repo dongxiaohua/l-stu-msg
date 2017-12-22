@@ -1,5 +1,6 @@
 package com.stus.msg.web;
 
+import com.stus.msg.entity.LoginUser;
 import com.stus.msg.entity.User;
 import com.stus.msg.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -21,16 +22,16 @@ public class LoginController {
 
   @RequestMapping(value = "/login",method = RequestMethod.POST)
   @ResponseBody
-  public int login(@RequestBody User user){
-    int code = userMapper.findAll(user.getUsername(),user.getPassword());
-//    int code = 200;
-    if (code == 200){
-      return 200;
+  public LoginUser login(@RequestBody User user){
+    User u = userMapper.find(user.getUsername(),user.getPassword());
+    if (u != null){
+      return LoginUser.builder().msg("登录成功").code(200).user(u).build();
     } else {
-      return 400;
+      return LoginUser.builder().msg("登录失败").code(400).user(null).build();
     }
 
   }
+
 
 
 
