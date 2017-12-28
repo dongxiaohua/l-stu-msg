@@ -1,0 +1,20 @@
+package com.stuts.msg.ServiceTest
+
+import com.stus.msg.service.UserService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
+import spock.lang.Specification
+
+/**
+ * Created by dongxiaohua on 2017/12/28.
+ */
+@ContextConfiguration(locations = "classpath:mapperContext.xml")
+class UserServiceTest extends  Specification{
+  @Autowired
+  UserService userService
+
+  def "userService-find" () {
+
+  }
+
+}
