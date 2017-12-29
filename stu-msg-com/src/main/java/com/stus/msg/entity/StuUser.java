@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- *
+ * stu_user表
  * @author dongxiaohua
  * @date 2017/12/22
  */
@@ -16,8 +16,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginUser {
-  private String msg;
-  private int code;
-  private StuUser user;
+public class StuUser {
+  private int id;
+  private String userName;
+  private String passWord;
+  private int limit;
+
 }

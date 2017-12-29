@@ -6,18 +6,22 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
- *
+ *  学生个人日常信息表
  * @author dongxiaohua
- * @date 2017/12/22
+ * @date 2017/12/29
  */
 @Getter
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginUser {
-  private String msg;
-  private int code;
-  private StuUser user;
+public class StuInfo {
+  private int id;
+  private long stuNumber;
+  private Date stuTime;
+  private String stuContent;
+  private String stuReason;
 }

@@ -7,16 +7,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Created by dongxiaohua on 2017/12/22.
+ *  班级表
+ * @author dongxiaohua
+ * @date 2017/12/29
  */
 @Getter
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class StuClass {
   private int id;
-  private String username;
-  private String password;
-
+  private String cName;
+  private String cDepartment;
+  private String cGrade;
+  private String cNum;
 }

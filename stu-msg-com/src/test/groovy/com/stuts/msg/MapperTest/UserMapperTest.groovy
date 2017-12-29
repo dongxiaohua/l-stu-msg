@@ -1,6 +1,6 @@
 package com.stuts.msg.MapperTest
 
-import com.stus.msg.mapper.UserMapper
+import com.stus.msg.mapper.StuUserMapper
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
@@ -13,7 +13,7 @@ import spock.lang.Specification
 @Slf4j
 class UserMapperTest extends Specification {
     @Autowired
-    UserMapper userMapper
+    StuUserMapper userMapper
 
   def "userMapper-findUser" () {
     given:
