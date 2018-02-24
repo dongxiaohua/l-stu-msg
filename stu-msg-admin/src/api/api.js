@@ -15,8 +15,13 @@ export const getUserList = params => {
     return axios.get(`${base}/user/list`, {params: params});
 };
 
-export const getUserListPage = params => {
-    return axios.get(`${base}/user/listpage`, {params: params});
+/**
+ * 获取学生信息数据
+ * @param params
+ * @returns {V|*}
+ */
+export const getStuList = params => {
+    return axios.get(`${base}/stu/list`, {params: params});
 };
 
 export const removeUser = params => {
