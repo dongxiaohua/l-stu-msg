@@ -12,30 +12,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author dongxiaohua
+ * @author liujingfang
  * @date 2017/12/22
  */
 @Controller
 @Slf4j
 public class LoginController {
+
   @Autowired
   private StuUserMapper userMapper;
 
-  @RequestMapping(value = "/login",method = RequestMethod.POST)
+  @RequestMapping(value = "/login", method = RequestMethod.POST)
   @ResponseBody
-  public LoginUser login(@RequestBody StuUser user){
-    StuUser u = userMapper.find(user.getUserName(),user.getPassWord());
-    if (u != null){
+  public LoginUser login(@RequestBody StuUser user) {
+    StuUser u = userMapper.find(user.getUserName(), user.getPassWord());
+    if (u != null) {
       return LoginUser.builder().msg("登录成功").code(200).user(u).build();
     } else {
       return LoginUser.builder().msg("登录失败").code(400).user(null).build();
     }
 
   }
-
-
-
 
 
 }

@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *  班级荣誉信息表
- * @author dongxiaohua
+ * @author liujingfang
  * @date 2017/12/29
  */
 @Getter
@@ -20,7 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class ClassInfo {
   private int id;
-  private String cNum;
-  private Date cTime;
-  private String cContent;
+  private String classNum;
+  private Date theTime;
+  private String classContent;
 }

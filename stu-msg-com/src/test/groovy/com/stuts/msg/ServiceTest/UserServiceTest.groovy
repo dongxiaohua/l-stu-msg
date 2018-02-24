@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 /**
- * Created by dongxiaohua on 2017/12/28.
+ * Created by liujingfang on 2017/12/28.
  */
 @ContextConfiguration(locations = "classpath:mapperContext.xml")
 class UserServiceTest extends  Specification{

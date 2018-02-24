@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *  学生个人日常信息表
- * @author dongxiaohua
+ * @author liujingfang
  * @date 2017/12/29
  */
 @Getter
@@ -21,7 +21,7 @@ import java.util.Date;
 public class StuInfo {
   private int id;
   private long stuNumber;
-  private Date stuTime;
+  private Date theTime;
   private String stuContent;
   private String stuReason;
 }

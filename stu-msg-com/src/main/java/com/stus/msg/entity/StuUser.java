@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * stu_user表
- * @author dongxiaohua
+ * @author liujingfang
  * @date 2017/12/22
  */
 @Getter

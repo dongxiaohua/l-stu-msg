@@ -6,9 +6,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Transient;
+
 /**
  *  学生个人信息表
- * @author dongxiaohua
+ * @author liujingfang
  * @date 2017/12/29
  */
 @Getter
@@ -22,5 +24,7 @@ public class StuMessage {
   private String stuSex;
   private int stuAge;
   private long stuNumber;
-  private String cNum;
+  private String classNum;
+  @Transient
+  private String className;
 }

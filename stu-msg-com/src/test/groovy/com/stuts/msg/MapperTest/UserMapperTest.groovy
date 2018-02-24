@@ -7,20 +7,21 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 /**
- * Created by dongxiaohua on 2017/12/28.
+ * @author liujingfang
+ *  Created on 2017/12/28.
  */
 @ContextConfiguration(locations = "classpath:mapperContext.xml")
 @Slf4j
 class UserMapperTest extends Specification {
-    @Autowired
-    StuUserMapper userMapper
+  @Autowired
+  StuUserMapper userMapper
 
-  def "userMapper-findUser" () {
+  def "userMapper-findUser"() {
     given:
     def name = "admin"
     def pwd = "123456"
     expect:
-    println userMapper.find(name,pwd)
+    println userMapper.find(name, pwd)
 
   }
 }

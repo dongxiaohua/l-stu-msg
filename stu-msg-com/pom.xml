@@ -134,6 +134,18 @@
       <artifactId>lombok</artifactId>
       <version>1.16.18</version>
     </dependency>
+    <!--@Transient注解使用-->
+    <dependency>
+      <groupId>com.distelli.persistence</groupId>
+      <artifactId>persistence-api</artifactId>
+      <version>3.5.4</version>
+    </dependency>
+    <!--@Valid注解使用-->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.0.Final</version>
+    </dependency>
     <!--groovy-->
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
