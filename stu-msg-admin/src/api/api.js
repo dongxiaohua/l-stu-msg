@@ -20,11 +20,11 @@ export const getUserList = params => {
  * @param params
  * @returns {V|*}
  */
-export const getStuList = params => {
-    return axios.get(`${base}/stu/list`, {params: params});
+export const getStuMessageList = params => {
+    return axios.get(`${base}/stu/list`, {params: params}).then(ref => ref.data);
 };
 
-export const removeUser = params => {
+export const removeStu = params => {
     return axios.get(`${base}/user/remove`, {params: params});
 };
 

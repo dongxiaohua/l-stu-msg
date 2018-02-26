@@ -11,7 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="l-stu-msg" target="1.5" />
-      <module name="stu-msg-com" target="1.5" />
+      <module name="stu-msg-com" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

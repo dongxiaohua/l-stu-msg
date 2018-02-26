@@ -1,0 +1,81 @@
+<template>
+	<el-form ref="form" :model="form" label-width="80px" @submit.prevent="onSubmit" style="margin:20px;width:60%;min-width:600px;">
+		<el-form-item label="信息名称">
+			<el-input v-model="form.infoName"></el-input>
+		</el-form-item>
+		<el-form-item label="学生学号">
+			<el-input v-model="form.stuNumber"></el-input>
+		</el-form-item>
+		<el-form-item label="内容">
+			<el-input type="textarea" v-model="form.stuContent"></el-input>
+		</el-form-item>
+		<el-form-item label="开始时间">
+			<el-col :span="11">
+				<el-date-picker type="date" placeholder="选择日期" v-model="form.theTime" style="width: 100%;"></el-date-picker>
+			</el-col>
+			<!--<el-col class="line" :span="2">-</el-col>-->
+			<!--<el-col :span="11">-->
+				<!--<el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>-->
+			<!--</el-col>-->
+		</el-form-item>
+		<el-form-item label="结束时间">
+			<el-col :span="11">
+				<el-date-picker type="date" placeholder="选择日期" v-model="form.theTime" style="width: 100%;"></el-date-picker>
+			</el-col>
+		</el-form-item>
+		<!--<el-form-item label="即时配送">-->
+			<!--<el-switch on-text="" off-text="" v-model="form.delivery"></el-switch>-->
+		<!--</el-form-item>-->
+		<!--<el-form-item label="活动性质">-->
+			<!--<el-checkbox-group v-model="form.type">-->
+				<!--<el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>-->
+				<!--<el-checkbox label="地推活动" name="type"></el-checkbox>-->
+				<!--<el-checkbox label="线下主题活动" name="type"></el-checkbox>-->
+				<!--<el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>-->
+			<!--</el-checkbox-group>-->
+		<!--</el-form-item>-->
+		<el-form-item label="是否注销">
+			<el-radio-group v-model="form.stuOff">
+				<el-radio label="是"></el-radio>
+				<el-radio label="否"></el-radio>
+			</el-radio-group>
+		</el-form-item>
+		<el-form-item label="原因 / 详情">
+			<el-input type="textarea" v-model="form.stuReason"></el-input>
+		</el-form-item>
+		<el-form-item>
+			<el-button type="primary">立即创建</el-button>
+			<el-button @click.native.prevent>取消</el-button>
+		</el-form-item>
+	</el-form>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				form: {
+					infoName: '',
+					stuNumber:'',
+					theTime:'',
+					endTime:'',
+                    stuContent:'',
+                    stuOff:'',
+                    stuReason: ''
+//					date1: '',
+//					date2: '',
+//					delivery: false,
+//					type: [],
+//					resource: '',
+//					desc: ''
+				}
+			}
+		},
+		methods: {
+			onSubmit() {
+				console.log('submit!');
+			}
+		}
+	}
+
+</script>

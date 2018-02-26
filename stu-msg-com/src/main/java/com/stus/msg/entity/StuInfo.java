@@ -19,9 +19,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StuInfo {
-  private int id;
-  private long stuNumber;
+  private Integer id;
+  private String infoName;
+  private String stuNumber;
   private Date theTime;
+  private Date endTime;
   private String stuContent;
   private String stuReason;
+  private Integer stuOff;
 }

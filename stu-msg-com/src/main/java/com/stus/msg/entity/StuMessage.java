@@ -21,9 +21,9 @@ import javax.persistence.Transient;
 public class StuMessage {
   private int id;
   private String stuName;
-  private String stuSex;
-  private int stuAge;
-  private long stuNumber;
+  private Integer stuSex;
+  private Integer stuAge;
+  private String stuNumber;
   private String classNum;
   @Transient
   private String className;

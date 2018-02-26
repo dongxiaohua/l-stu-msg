@@ -3,7 +3,7 @@ import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Main from './views/Main.vue'
 import Table from './views/stuModule/StuList.vue'
-import Form from './views/stuModule/QueryStu.vue'
+import Form from './views/stuModule/SetStuMes.vue'
 import user from './views/stuModule/user.vue'
 import Page4 from './views/classModule/Page4.vue'
 import Page5 from './views/classModule/Page5.vue'
@@ -32,8 +32,8 @@ let routes = [
         children: [
             { path: '/main', component: Main, name: '主页', hidden: true },
             { path: '/stuList', component: Table, name: '学生信息列表' },
-            { path: '/form', component: Form, name: '查询学生信息' },
-            { path: '/user', component: user, name: '列表' },
+            { path: '/form', component: Form, name: '学生信息创建' },
+            // { path: '/user', component: user, name: '列表' },
         ]
     },
     {
@@ -43,6 +43,7 @@ let routes = [
         iconCls: 'fa fa-id-card-o',
         children: [
             { path: '/page4', component: Page4, name: '班级列表' },
+            { path: '/page4', component: Page4, name: '班级信息创建' },
             { path: '/page5', component: Page5, name: '学院列表' }
         ]
     },
