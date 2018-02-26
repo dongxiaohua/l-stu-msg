@@ -51,7 +51,7 @@
 		<!--编辑界面-->
 		<el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-				<el-form-item label="姓名" prop="name">
+				<el-form-item label="姓名" prop="stuName">
 					<el-input v-model="editForm.stuName" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="性别">
@@ -69,8 +69,8 @@
 				<el-form-item label="学号" prop="stuNumber">
 					<el-input v-model="editForm.stuNumber" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="班级" prop="classNumber">
-					<el-input v-model="editForm.classNumber" auto-complete="off"></el-input>
+				<el-form-item label="班级编号" prop="classNum">
+					<el-input v-model="editForm.classNum" auto-complete="off"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -100,7 +100,7 @@
 				<el-form-item label="学号" prop="stuNumber">
 					<el-input v-model="addForm.stuNumber" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="班级" prop="classNum">
+				<el-form-item label="班级编号" prop="classNum">
 					<el-input v-model="addForm.classNum" auto-complete="off"></el-input>
 				</el-form-item>
 			</el-form>
@@ -133,9 +133,9 @@
 				editFormVisible: false,//编辑界面是否显示
 				editLoading: false,
 				editFormRules: {
-					StuName: [
+					stuName: [
 						{ required: true, message: '请输入姓名', trigger: 'blur' }
-					],StuNumber: [
+					],stuNumber: [
                         { required: true, message: '请输入学号', trigger: 'blur' }
                     ], classNum: [
                         { required: true, message: '请输入班级编号', trigger: 'blur' }
