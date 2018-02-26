@@ -43,7 +43,7 @@ let routes = [
         iconCls: 'fa fa-id-card-o',
         children: [
             { path: '/page4', component: Page4, name: '班级列表' },
-            { path: '/page4', component: Page4, name: '班级信息创建' },
+            { path: '/page6', component: Page4, name: '班级信息创建' },
             { path: '/page5', component: Page5, name: '学院列表' }
         ]
     },

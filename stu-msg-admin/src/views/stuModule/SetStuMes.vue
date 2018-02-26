@@ -1,12 +1,12 @@
 <template>
-	<el-form ref="form" :model="form" label-width="80px" @submit.prevent="onSubmit" style="margin:20px;width:60%;min-width:600px;">
-		<el-form-item label="信息名称">
+	<el-form ref="form" :model="form" label-width="80px" :rules="addFormRules" @submit.prevent="onSubmit" style="margin:20px;width:60%;min-width:600px;">
+		<el-form-item label="信息名称" prop="infoName">
 			<el-input v-model="form.infoName"></el-input>
 		</el-form-item>
-		<el-form-item label="学生学号">
+		<el-form-item label="学生学号" prop="stuNumber">
 			<el-input v-model="form.stuNumber"></el-input>
 		</el-form-item>
-		<el-form-item label="内容">
+		<el-form-item label="内容" prop="stuContent">
 			<el-input type="textarea" v-model="form.stuContent"></el-input>
 		</el-form-item>
 		<el-form-item label="开始时间">
@@ -36,8 +36,8 @@
 		<!--</el-form-item>-->
 		<el-form-item label="是否注销">
 			<el-radio-group v-model="form.stuOff">
-				<el-radio label="是"></el-radio>
-				<el-radio label="否"></el-radio>
+				<el-radio class="radio" :label="1">是</el-radio>
+				<el-radio class="radio" :label="0">否</el-radio>
 			</el-radio-group>
 		</el-form-item>
 		<el-form-item label="原因 / 详情">
@@ -68,6 +68,16 @@
 //					type: [],
 //					resource: '',
 //					desc: ''
+				},
+//				必填设置
+                addFormRules: {
+                    infoName: [
+                        { required: true, message: '请输入名称', trigger: 'blur' }
+                    ],stuNumber: [
+                        { required: true, message: '请输入学号', trigger: 'blur' }
+                    ], stuContent: [
+                        { required: true, message: '请输入班级编号', trigger: 'blur' }
+                    ]
 				}
 			}
 		},
