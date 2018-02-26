@@ -115,7 +115,7 @@
 <script>
 	import util from '../../common/js/util'
 	//import NProgress from 'nprogress'
-	import { getStuMessageList, removeStu, batchRemoveUser, editUser, addUser } from '../../api/api';
+	import { getStuMessageList, removeStu, batchRemoveStu, editStu, addStu } from '../../api/api';
 
 	export default {
 		data() {
@@ -245,7 +245,7 @@
 							//NProgress.start();
 							let para = Object.assign({}, this.editForm);
 							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							editUser(para).then((res) => {
+							editStu(para).then((res) => {
 								this.editLoading = false;
 								//NProgress.done();
 								this.$message({
@@ -269,7 +269,7 @@
 							//NProgress.start();
 							let para = Object.assign({}, this.addForm);
 							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							addUser(para).then((res) => {
+							addStu(para).then((res) => {
 								this.addLoading = false;
 								//NProgress.done();
 								this.$message({
@@ -296,7 +296,7 @@
 					this.listLoading = true;
 					//NProgress.start();
 					let para = { ids: ids };
-					batchRemoveUser(para).then((res) => {
+					batchRemoveStu(para).then((res) => {
 						this.listLoading = false;
 						//NProgress.done();
 						this.$message({

@@ -24,18 +24,38 @@ export const getStuMessageList = params => {
     return axios.get(`${base}/stu/list`, {params: params}).then(ref => ref.data);
 };
 
+/**
+ * 删除指定信息
+ * @param params
+ * @returns {*|V}
+ */
 export const removeStu = params => {
     return axios.get(`${base}/user/remove`, {params: params});
 };
 
-export const batchRemoveUser = params => {
+/**
+ * 批量删除
+ * @param params
+ * @returns {*|V}
+ */
+export const batchRemoveStu = params => {
     return axios.get(`${base}/user/batchremove`, {params: params});
 };
 
-export const editUser = params => {
-    return axios.get(`${base}/user/edit`, {params: params});
+/**
+ * 修改学生信息
+ * @param params
+ * @returns {*|V}
+ */
+export const editStu = params => {
+    return axios.get(`${base}/stu/edit`, {params: params});
 };
 
-export const addUser = params => {
-    return axios.get(`${base}/user/add`, {params: params});
+/**
+ * 添加学生信息
+ * @param params
+ * @returns {*|V}
+ */
+export const addStu = params => {
+    return axios.get(`${base}/stu/add`, {params: params});
 };
