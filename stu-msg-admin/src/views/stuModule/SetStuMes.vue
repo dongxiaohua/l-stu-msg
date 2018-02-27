@@ -51,6 +51,8 @@
 </template>
 
 <script>
+
+    import { addStuInfo } from '../../api/api';
 	export default {
 		data() {
 			return {
@@ -83,7 +85,28 @@
 		},
 		methods: {
 			onSubmit() {
-				console.log('submit!');
+                this.$refs.form.validate((valid) => {
+                    if (valid) {
+                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            this.addLoading = true;
+                            //NProgress.start();
+                            let para = Object.assign({}, this.form);
+                            console.log(para);
+//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+                            addStuInfo(para).then((res) => {
+                                this.addLoading = false;
+                                console.log(res);
+                                //NProgress.done();
+                                this.$message({
+                                    message: '提交成功',
+                                    type: 'success'
+                                });
+                                this.$refs['addForm'].resetFields();
+                                this.addFormVisible = false;
+                            });
+                        });
+                    }
+                });
 			}
 		}
 	}

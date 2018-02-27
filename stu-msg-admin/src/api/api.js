@@ -59,3 +59,12 @@ export const editStu = params => {
 export const addStu = params => {
     return axios.post(`${base}/stu/add`,  params);
 };
+
+/**
+ * 添加学生info
+ * @param params
+ * @returns {*}
+ */
+export  const addStuInfo = params => {
+  return axios.post(`${base}/info/add-stu`);
+};
