@@ -13,8 +13,29 @@ public interface StuMessageService {
 
   /**
    * 查询学生信息
-   * @param stuId
+   * @param stuNumber
    * @return
    */
-  List<StuMessage> findStuMessage(Integer stuId);
+  List<StuMessage> findStuMessage(String stuNumber);
+
+  /**
+   * 根据学号删除
+   * @param stuNumber
+   * @return
+   */
+  int deleteById(String stuNumber);
+
+  /**
+   * 插入新数据
+   * @param stuMessage
+   * @return
+   */
+  int insert(StuMessage stuMessage);
+
+  /**
+   * 编辑数据
+   * @param stuMessage
+   * @return
+   */
+  int edit(StuMessage stuMessage);
 }

@@ -4,7 +4,7 @@
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters">
 				<el-form-item>
-					<el-input v-model="filters.name" placeholder="姓名"></el-input>
+					<el-input v-model="filters.StuNumber" placeholder="学号"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" v-on:click="getUsers">查询</el-button>
@@ -44,9 +44,11 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
 			<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+			<!--分页-->
 			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
+
 
 		<!--编辑界面-->
 		<el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
@@ -121,7 +123,6 @@
 		data() {
 			return {
 				filters: {
-					StuName: '',
 					StuNumber:''
 				},
 				data: [],
@@ -182,14 +183,13 @@
 				this.page = val;
 				this.getUsers();
 			},
-			//获取用户列表
+			//搜索 获取用户列表
 			getUsers() {
 				let para = {
-					page: this.page,
-					stuName: this.filters.StuName,
 					stuNumber:this.filters.StuNumber
 				};
 				this.listLoading = true;
+				console.log(para);
 				//NProgress.start();
                 getStuMessageList(para).then((data) => {
 //					this.total = res.data.total;
@@ -206,7 +206,7 @@
 				}).then(() => {
 					this.listLoading = true;
 					//NProgress.start();
-					let para = { id: row.id };
+					let para = { stuNumber: row.stuNumber };
                     removeStu(para).then((res) => {
 						this.listLoading = false;
 						//NProgress.done();
@@ -244,7 +244,7 @@
 							this.editLoading = true;
 							//NProgress.start();
 							let para = Object.assign({}, this.editForm);
-							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							editStu(para).then((res) => {
 								this.editLoading = false;
 								//NProgress.done();
@@ -268,9 +268,11 @@
 							this.addLoading = true;
 							//NProgress.start();
 							let para = Object.assign({}, this.addForm);
-							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+							console.log(para);
+//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							addStu(para).then((res) => {
 								this.addLoading = false;
+                                console.log(res);
 								//NProgress.done();
 								this.$message({
 									message: '提交成功',

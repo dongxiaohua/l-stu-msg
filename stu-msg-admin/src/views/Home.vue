@@ -130,7 +130,8 @@
 			if (user) {
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '';
+//				头像路径
+				this.sysUserAvatar = user.avatar || './static/images/qg.jpg';
 			}
 
 		}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fxiaoke.transfer.mapper.ScanLogMapper">
-  <insert id="batchUpsert">
+  <insert id="">
     INSERT INTO scan_log ("name", "topic", "url", "modify_time") VALUES
     <foreach collection="items" item="i" index="index" open="" separator="," close="">
       (#{i.name}, #{i.topic}, #{i.url}, #{i.modifyTime})

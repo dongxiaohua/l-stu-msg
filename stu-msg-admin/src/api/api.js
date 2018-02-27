@@ -30,7 +30,7 @@ export const getStuMessageList = params => {
  * @returns {*|V}
  */
 export const removeStu = params => {
-    return axios.get(`${base}/user/remove`, {params: params});
+    return axios.get(`${base}/stu/remove`, {params: params});
 };
 
 /**
@@ -39,7 +39,7 @@ export const removeStu = params => {
  * @returns {*|V}
  */
 export const batchRemoveStu = params => {
-    return axios.get(`${base}/user/batchremove`, {params: params});
+    return axios.get(`${base}/stu/batchremove`, {params: params});
 };
 
 /**
@@ -48,7 +48,7 @@ export const batchRemoveStu = params => {
  * @returns {*|V}
  */
 export const editStu = params => {
-    return axios.get(`${base}/stu/edit`, {params: params});
+    return axios.post(`${base}/stu/edit`,  params);
 };
 
 /**
@@ -57,5 +57,5 @@ export const editStu = params => {
  * @returns {*|V}
  */
 export const addStu = params => {
-    return axios.get(`${base}/stu/add`, {params: params});
+    return axios.post(`${base}/stu/add`,  params);
 };

@@ -23,14 +23,14 @@ public class StuMessageServiceImpl implements StuMessageService {
   /**
    * 查询学生信息
    *
-   * @param stuId 学生信息ID
+   * @param stuNumber 学生信息ID
    * @return
    */
   @Override
-  public List<StuMessage> findStuMessage(Integer stuId) {
+  public List<StuMessage> findStuMessage(String stuNumber) {
     List<StuMessage> stuMessageList = null;
-    if (stuId != null && stuId > 0) {
-      stuMessageList = stuMessageMapper.findStuById(stuId);
+    if (stuNumber != null && !"".equals(stuNumber)) {
+      stuMessageList = stuMessageMapper.findStuById(stuNumber);
       stuMessageList.forEach(this::getClassName);
       return stuMessageList;
     }
@@ -38,6 +38,39 @@ public class StuMessageServiceImpl implements StuMessageService {
     stuMessageList.forEach(this::getClassName);
     return stuMessageList;
   }
+
+  /**
+   * 根据学号删除
+   *
+   * @param stuNumber
+   * @return
+   */
+  @Override
+  public int deleteById(String stuNumber) {
+    return stuMessageMapper.deleteById(stuNumber);
+  }
+
+  /**
+   * 插入新数据
+   *
+   * @param stuMessage
+   * @return
+   */
+  @Override
+  public int insert(StuMessage stuMessage) {
+    return stuMessageMapper.insert(stuMessage);
+  }
+
+  /**
+   * 编辑数据
+   * @param stuMessage
+   * @return
+   */
+  @Override
+  public int edit(StuMessage stuMessage) {
+    return stuMessageMapper.edit(stuMessage);
+  }
+
 
   /**
    * 获取班级名称
@@ -52,6 +85,7 @@ public class StuMessageServiceImpl implements StuMessageService {
     stuMessage.setClassName(className.toString());
     return stuMessage;
   }
+
   private String name(String s) {
     if ("2443".equals(s)) {
       return "计算机";
