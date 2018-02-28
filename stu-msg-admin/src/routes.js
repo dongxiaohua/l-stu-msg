@@ -32,7 +32,7 @@ let routes = [
         children: [
             { path: '/main', component: Main, name: '主页', hidden: true },
             { path: '/stuList', component: Table, name: '学生信息列表' },
-            { path: '/form', component: Form, name: '学生信息创建' },
+            { path: '/form', component: Form, name: '学生后勤信息创建' },
             // { path: '/user', component: user, name: '列表' },
         ]
     },

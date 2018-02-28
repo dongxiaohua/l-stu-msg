@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let base = 'http://localhost:8080/stu';
+let base = 'http://localhost:8080/student';
 // let base = '';
 let header = {
     'content-type': 'application/json;charset=UTF-8'
@@ -66,5 +66,5 @@ export const addStu = params => {
  * @returns {*}
  */
 export  const addStuInfo = params => {
-  return axios.post(`${base}/info/add-stu`);
+  return axios.post(`${base}/info/add-stu`, params);
 };
