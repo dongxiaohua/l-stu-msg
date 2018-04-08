@@ -13,7 +13,6 @@ import javax.persistence.Transient;
  * @author liujingfang
  * @date 2017/12/29
  */
-@Getter
 @Builder
 @Data
 @NoArgsConstructor

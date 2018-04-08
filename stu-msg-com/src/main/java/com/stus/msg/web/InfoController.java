@@ -1,5 +1,6 @@
 package com.stus.msg.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.stus.msg.entity.StuInfo;
 import com.stus.msg.service.ClassInfoService;
 import com.stus.msg.service.StuInfoService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author dongxiaohua
@@ -42,12 +45,31 @@ public class InfoController {
         return res.fail();
       }
     } catch (Exception e) {
-      log.error("插入info异常:",e);
+      log.error("插入info异常:", e);
       return res.fail();
     }
   }
 
-
-
+  /**
+   * 根据学号查询学生后勤信息
+   *
+   * @param dataObject
+   * @return
+   */
+  @RequestMapping(value = "/list", method = RequestMethod.POST)
+  public HttpResult list(@RequestBody String dataObject) {
+    JSONObject jsonObject = JSONObject.parseObject(dataObject);
+    HttpResult res = new HttpResult();
+    try {
+      List<StuInfo> stuInfoList = stuInfoService.getInfoList(jsonObject.getString("stuNumber"));
+      res.success();
+      res.setData(stuInfoList);
+    } catch (Exception e) {
+      log.error("查询学生后勤信息异常，error:", e);
+      res.fail();
+      res.setMsg(e.getMessage());
+    }
+    return res;
+  }
 
 }

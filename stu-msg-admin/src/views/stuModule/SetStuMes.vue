@@ -1,7 +1,7 @@
 <template>
     <el-form ref="form" :model="form" label-width="80px" :rules="addFormRules" @submit.prevent="onSubmit" style="margin:20px;width:60%;min-width:600px;">
         <el-form-item label="信息名称" prop="infoName">
-            <el-input v-model="form.infoName" placeholder="如：荣誉，请假，记过等"></el-input>
+            <el-input v-model="form.infoName" placeholder="如：荣誉，请假，记过，挂科等"></el-input>
         </el-form-item>
         <el-form-item label="学生学号" prop="stuNumber">
             <el-input v-model="form.stuNumber"></el-input>

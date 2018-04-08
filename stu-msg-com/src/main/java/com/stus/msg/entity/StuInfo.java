@@ -6,14 +6,15 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
- *  学生个人日常信息表
+ * 学生个人日常信息表
+ *
  * @author liujingfang
  * @date 2017/12/29
  */
-@Getter
 @Builder
 @Data
 @NoArgsConstructor
@@ -27,4 +28,6 @@ public class StuInfo {
   private String stuContent;
   private String stuReason;
   private Integer stuOff;
+  @Transient
+  private String stuName;
 }

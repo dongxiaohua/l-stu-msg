@@ -2,7 +2,7 @@ package com.stus.msg.service;
 
 /**
  *
- * @author liujingfang
+ * @author dongxiaohua
  * @date 2017/12/22
  */
 public interface StuUserService {

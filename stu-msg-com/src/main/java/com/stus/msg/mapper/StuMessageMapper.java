@@ -31,7 +31,17 @@ public interface StuMessageMapper {
   List<StuMessage> findStuById(@Param("stuNumber") String stuNumber);
 
   /**
+   * 根据学号查姓名
+   *
+   * @param stuNumber
+   * @return
+   */
+  @Select("SELECT stu_name FROM stu_message WHERE stu_number = #{stuNumber}")
+  String findStuNameByNumber(@Param("stuNumber") String stuNumber);
+
+  /**
    * 根据id删除
+   *
    * @param stuNumber
    * @return
    */
@@ -40,6 +50,7 @@ public interface StuMessageMapper {
 
   /**
    * 插入新数据
+   *
    * @param stuMessage
    * @return
    */
@@ -47,6 +58,7 @@ public interface StuMessageMapper {
 
   /**
    * 编辑信息
+   *
    * @param stuMessage
    * @return
    */

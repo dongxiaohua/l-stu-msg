@@ -48,7 +48,7 @@ export const batchRemoveStu = params => {
  * @returns {*|V}
  */
 export const editStu = params => {
-    return axios.post(`${base}/stu/edit`,  params);
+    return axios.post(`${base}/stu/edit`, params);
 };
 
 /**
@@ -57,7 +57,7 @@ export const editStu = params => {
  * @returns {*|V}
  */
 export const addStu = params => {
-    return axios.post(`${base}/stu/add`,  params);
+    return axios.post(`${base}/stu/add`, params);
 };
 
 /**
@@ -65,6 +65,15 @@ export const addStu = params => {
  * @param params
  * @returns {*}
  */
-export  const addStuInfo = params => {
-  return axios.post(`${base}/info/add-stu`, params);
+export const addStuInfo = params => {
+    return axios.post(`${base}/info/add-stu`, params);
+};
+
+/**
+ * 根据学号查询学生所有后勤信息
+ * @param params
+ * @returns {Promise.<TResult>}
+ */
+export const getStuInfoList = params => {
+    return axios.post(`${base}/info/list`,params);
 };
