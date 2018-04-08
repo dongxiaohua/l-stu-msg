@@ -10,7 +10,7 @@
                 <!--<el-button type="primary" v-on:click="getUsers">查询</el-button>-->
                 <!--</el-form-item>-->
                 <el-form-item>
-                    <el-button type="primary" @click="handleAdd">新增</el-button>
+                    <router-link :to="'/form'" style="background-color: #717AD2;color: #f4f4f4;padding: 10px;border-radius:5px;">新增</router-link>
                 </el-form-item>
             </el-form>
         </el-col>
@@ -159,72 +159,6 @@
                     });
                 }).catch(() => {
 
-                });
-            },
-            //显示编辑界面
-            handleEdit: function (index, row) {
-                this.editFormVisible = true;
-                this.editForm = Object.assign({}, row);
-            },
-            //显示新增界面
-            handleAdd: function () {
-                this.addFormVisible = true;
-                this.addForm = {
-                    stuName: '',
-                    stuSex: -1,
-                    stuAge: 0,
-                    stuNumber: '',
-                    classNum: ''
-                };
-            },
-            //编辑
-            editSubmit: function () {
-                this.$refs.editForm.validate((valid) => {
-                    if (valid) {
-                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
-                            this.editLoading = true;
-                            //NProgress.start();
-                            let para = Object.assign({}, this.editForm);
-//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-                            editStu(para).then((res) => {
-                                this.editLoading = false;
-                                //NProgress.done();
-                                this.$message({
-                                    message: '提交成功',
-                                    type: 'success'
-                                });
-                                this.$refs['editForm'].resetFields();
-                                this.editFormVisible = false;
-                                this.getInfos();
-                            });
-                        });
-                    }
-                });
-            },
-            //新增
-            addSubmit: function () {
-                this.$refs.addForm.validate((valid) => {
-                    if (valid) {
-                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
-                            this.addLoading = true;
-                            //NProgress.start();
-                            let para = Object.assign({}, this.addForm);
-                            console.log(para);
-//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-                            addStu(para).then((res) => {
-                                this.addLoading = false;
-                                console.log(res);
-                                //NProgress.done();
-                                this.$message({
-                                    message: '提交成功',
-                                    type: 'success'
-                                });
-                                this.$refs['addForm'].resetFields();
-                                this.addFormVisible = false;
-                                this.getInfos();
-                            });
-                        });
-                    }
                 });
             },
             selsChange: function (sels) {
