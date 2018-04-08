@@ -60,6 +60,34 @@
             </el-pagination>
         </el-col>
 
+        <!--编辑界面-->
+        <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
+            <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
+                <el-form-item label="姓名" prop="stuName">
+                    <el-input v-model="editForm.stuName" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="性别">
+                    <el-radio-group v-model="editForm.stuSex">
+                        <el-radio class="radio" :label="1">男</el-radio>
+                        <el-radio class="radio" :label="0">女</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="年龄">
+                    <el-input-number v-model="editForm.stuAge" :min="0" :max="200"></el-input-number>
+                </el-form-item>
+                <el-form-item label="学号" prop="stuNumber">
+                    <el-input v-model="editForm.stuNumber" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="班级编号" prop="classNum">
+                    <el-input v-model="editForm.classNum" auto-complete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click.native="editFormVisible = false">取消</el-button>
+                <el-button type="primary" @click.native="editSubmit" :loading="editLoading">提交</el-button>
+            </div>
+        </el-dialog>
+
 
     </section>
 </template>
@@ -87,7 +115,30 @@
                     data: []
                 },
                 listLoading: false,
-                sels: []//列表选中列
+                sels: [],//列表选中列
+
+                editFormVisible: false,//编辑界面是否显示
+                editLoading: false,
+                editFormRules: {
+                    stuName: [
+                        {required: true, message: '请输入姓名', trigger: 'blur'}
+                    ], stuNumber: [
+                        {required: true, message: '请输入学号', trigger: 'blur'}
+                    ], classNum: [
+                        {required: true, message: '请输入班级编号', trigger: 'blur'}
+                    ]
+                },
+                //编辑界面数据
+                editForm: {
+                    infoName: '',
+                    stuNumber: '',
+                    theTime: '',
+                    endTime: '',
+                    stuContent: '',
+                    stuOff: '',
+                    stuReason: ''
+                }
+
             }
         },
         computed: {
@@ -159,6 +210,72 @@
                     });
                 }).catch(() => {
 
+                });
+            },
+            //显示编辑界面
+            handleEdit: function (index, row) {
+                this.editFormVisible = true;
+                this.editForm = Object.assign({}, row);
+            },
+            //显示新增界面
+            handleAdd: function () {
+                this.addFormVisible = true;
+                this.addForm = {
+                    stuName: '',
+                    stuSex: -1,
+                    stuAge: 0,
+                    stuNumber: '',
+                    classNum: ''
+                };
+            },
+            //编辑
+            editSubmit: function () {
+                this.$refs.editForm.validate((valid) => {
+                    if (valid) {
+                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            this.editLoading = true;
+                            //NProgress.start();
+                            let para = Object.assign({}, this.editForm);
+//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+                            editStu(para).then((res) => {
+                                this.editLoading = false;
+                                //NProgress.done();
+                                this.$message({
+                                    message: '提交成功',
+                                    type: 'success'
+                                });
+                                this.$refs['editForm'].resetFields();
+                                this.editFormVisible = false;
+                                this.getUsers();
+                            });
+                        });
+                    }
+                });
+            },
+            //新增
+            addSubmit: function () {
+                this.$refs.addForm.validate((valid) => {
+                    if (valid) {
+                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            this.addLoading = true;
+                            //NProgress.start();
+                            let para = Object.assign({}, this.addForm);
+                            console.log(para);
+//							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+                            addStu(para).then((res) => {
+                                this.addLoading = false;
+                                console.log(res);
+                                //NProgress.done();
+                                this.$message({
+                                    message: '提交成功',
+                                    type: 'success'
+                                });
+                                this.$refs['addForm'].resetFields();
+                                this.addFormVisible = false;
+                                this.getUsers();
+                            });
+                        });
+                    }
                 });
             },
             selsChange: function (sels) {
