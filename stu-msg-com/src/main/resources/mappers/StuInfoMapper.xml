@@ -6,10 +6,12 @@
     VALUES (#{infoName},#{stuNumber},#{theTime},#{endTime},#{stuContent},#{stuReason},#{stuOff})
   </insert>
 
-  <!--<update id="edit">-->
-  <!--UPDATE stu_message SET stu_name = #{stuName},stu_sex = #{stuSex},stu_age = #{stuAge},stu_number = #{stuNumber},class_num = #{classNum}-->
-  <!--WHERE id = #{id}-->
-  <!--</update>-->
+  <update id="edit">
+  UPDATE stu_info SET
+  info_name = #{infoName},stu_number = #{stuNumber},the_time = #{theTime},end_time = #{endTime},stu_content = #{stuContent},
+  stu_reason = #{stuReason},stu_off = #{stuOff}
+  WHERE id = #{id}
+  </update>
 
 
 </mapper>

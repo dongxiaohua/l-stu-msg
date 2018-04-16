@@ -31,4 +31,19 @@ class StuMInfoMapperTest extends Specification {
     println "==========" + stuInfoMapper.insert(info)
   }
 
+  def "edit"() {
+    given:
+    def info = new StuInfo()
+    info.setStuNumber("201424430203")
+    info.setInfoName("荣誉")
+    info.setStuContent("三好xue生")
+    info.setStuReason("年级第三")
+    info.setTheTime(new Date())
+    info.setEndTime(new Date())
+    info.setStuOff(0)
+    info.setId(3)
+    expect:
+    println "===========" + stuInfoMapper.edit(info)
+  }
+
 }

@@ -29,4 +29,12 @@ public interface StuInfoMapper {
   @Select("SELECT * FROM stu_info WHERE stu_number = #{stuNumber}")
   List<StuInfo> getInfoList(@Param("stuNumber") String stuNumber);
 
+  /**
+   * 编辑学生后勤信息
+   *
+   * @param stuInfo
+   * @return
+   */
+  Integer edit(StuInfo stuInfo);
+
 }

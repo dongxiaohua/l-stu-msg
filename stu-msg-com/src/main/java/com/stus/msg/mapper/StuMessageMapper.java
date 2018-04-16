@@ -46,7 +46,7 @@ public interface StuMessageMapper {
    * @return
    */
   @Delete("DELETE FROM stu_message WHERE stu_number = #{stuNumber}")
-  int deleteById(@Param("stuNumber") String stuNumber);
+  Integer deleteById(@Param("stuNumber") String stuNumber);
 
   /**
    * 插入新数据
@@ -54,7 +54,7 @@ public interface StuMessageMapper {
    * @param stuMessage
    * @return
    */
-  int insert(StuMessage stuMessage);
+  Integer insert(StuMessage stuMessage);
 
   /**
    * 编辑信息
@@ -62,6 +62,6 @@ public interface StuMessageMapper {
    * @param stuMessage
    * @return
    */
-  int edit(StuMessage stuMessage);
+  Integer edit(StuMessage stuMessage);
 
 }

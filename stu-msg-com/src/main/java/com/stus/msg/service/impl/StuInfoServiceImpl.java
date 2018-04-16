@@ -47,4 +47,15 @@ public class StuInfoServiceImpl implements StuInfoService {
     });
     return stuInfoList;
   }
+
+  /**
+   * 编辑学生后勤信息
+   *
+   * @param stuInfo
+   * @return
+   */
+  @Override
+  public Integer editStuInfo(StuInfo stuInfo) {
+    return stuInfoMapper.edit(stuInfo);
+  }
 }

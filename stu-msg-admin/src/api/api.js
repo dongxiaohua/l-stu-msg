@@ -75,5 +75,23 @@ export const addStuInfo = params => {
  * @returns {Promise.<TResult>}
  */
 export const getStuInfoList = params => {
-    return axios.post(`${base}/info/list`,params);
+    return axios.post(`${base}/info/list`, params);
+};
+
+/**
+ * 修改学生后勤信息
+ * @param params
+ * @returns {*}
+ */
+export const editStuInfo = params => {
+    return axios.post(`${base}/info/edit`, params);
+};
+
+/**
+ * 删除指定信息
+ * @param params
+ * @returns {*}
+ */
+export const removeStuInfo = params => {
+    return axios.post(`${base}/info/delete`, params);
 };

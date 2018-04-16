@@ -3,48 +3,36 @@
         <!--工具条-->
         <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
             <el-form :inline="true" :model="filters">
-                <!--<el-form-item>-->
-                <!--<el-input v-model="filters.StuNumber" placeholder="学号"></el-input>-->
-                <!--</el-form-item>-->
-                <!--<el-form-item>-->
-                <!--<el-button type="primary" v-on:click="getUsers">查询</el-button>-->
-                <!--</el-form-item>-->
                 <el-form-item>
-                    <router-link :to="'/form'" style="background-color: #717AD2;color: #f4f4f4;padding: 10px;border-radius:5px;">新增</router-link>
+                    <el-input v-model="filters.StuNumber" placeholder="班级编号"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" v-on:click="getUsers">查询</el-button>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="handleAdd">新增</el-button>
                 </el-form-item>
             </el-form>
         </el-col>
 
         <!--列表-->
-        <el-table :data="getStuInfoList" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
+        <el-table :data="getClassMessageList" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
             <el-table-column type="selection" width="55">
             </el-table-column>
             <el-table-column type="index" width="60">
             </el-table-column>
-            <el-table-column prop="infoName" width="120" label="信息名称" sortable>
+            <el-table-column prop="className" label="班级名称" width="120" sortable>
             </el-table-column>
-            <el-table-column prop="stuName" width="120" label="学生姓名" sortable>
+            <el-table-column prop="classGrade" label="年级" width="100" sortable>
             </el-table-column>
-            <el-table-column prop="stuNumber" label="学生学号" sortable>
+            <el-table-column prop="classNum" label="班级编号" width="180" sortable>
             </el-table-column>
-            <el-table-column prop="stuOff" label="是否注销" sortable>
-                <template scope="scope">
-                    <span v-if="scope.row.stuOff === 1">是</span>
-                    <span v-else style="color: red">否</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="theTime" label="开始时间" sortable>
-            </el-table-column>
-            <el-table-column prop="endTime" label="结束时间" sortable>
-            </el-table-column>
-            <el-table-column prop="stuContent" min-width="110" label="内容">
-            </el-table-column>
-            <el-table-column prop="stuReason" min-width="100" label="详情">
+            <el-table-column prop="classDepartment" label="所属学部" width="100" :formatter="formatSex" sortable>
             </el-table-column>
             <el-table-column label="操作" width="150">
                 <template scope="scope">
                     <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <!--<el-button type="danger" size="small" @click="stuInfoDel(scope.$index, scope.row)">删除</el-button>-->
+                    <el-button type="danger" size="small" @click="stuMesDel(scope.$index, scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -64,36 +52,21 @@
             </el-pagination>
         </el-col>
 
+
         <!--编辑界面-->
         <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
             <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-                <el-form-item label="信息名称" prop="infoName">
-                    <el-input v-model="editForm.infoName" placeholder="如：荣誉，请假，记过，挂科等"></el-input>
+                <el-form-item label="班级名称" prop="className">
+                    <el-input v-model="editForm.className" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="学生学号" prop="stuNumber">
-                    <el-input v-model="editForm.stuNumber"></el-input>
+                <el-form-item label="年级">
+                    <el-input-number v-model="editForm.classGrade" :min="0" :max="200"></el-input-number>
                 </el-form-item>
-                <el-form-item label="内容" prop="stuContent">
-                    <el-input type="textarea" v-model="editForm.stuContent"></el-input>
+                <el-form-item label="班级编号" prop="stuNumber">
+                    <el-input v-model="editForm.classNum" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="开始时间">
-                    <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="editForm.theTime" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="结束时间">
-                    <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="editForm.endTime" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="是否注销">
-                    <el-radio-group v-model="editForm.stuOff">
-                        <el-radio class="radio" :label="1">是</el-radio>
-                        <el-radio class="radio" :label="0">否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="原因 / 详情">
-                    <el-input type="textarea" v-model="editForm.stuReason"></el-input>
+                <el-form-item label="所属学部" prop="classNum">
+                    <el-input v-model="editForm.classDepartment" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -102,14 +75,36 @@
             </div>
         </el-dialog>
 
-
+        <!--新增界面-->
+        <el-dialog title="新增" v-model="addFormVisible" :close-on-click-modal="false">
+            <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
+                <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
+                    <el-form-item label="班级名称" prop="className">
+                        <el-input v-model="editForm.className" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="年级">
+                        <el-input-number v-model="editForm.classGrade" :min="0" :max="200"></el-input-number>
+                    </el-form-item>
+                    <el-form-item label="班级编号" prop="stuNumber">
+                        <el-input v-model="editForm.classNum" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="所属学部" prop="classNum">
+                        <el-input v-model="editForm.classDepartment" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-form>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click.native="addFormVisible = false">取消</el-button>
+                <el-button type="primary" @click.native="addSubmit" :loading="addLoading">提交</el-button>
+            </div>
+        </el-dialog>
     </section>
 </template>
 
 <script>
     import util from '../../common/js/util'
     //import NProgress from 'nprogress'
-    import {getStuInfoList, removeStuInfo, batchRemoveStu, editStuInfo} from '../../api/api';
+    import {getClassMessageList, removeStu, batchRemoveStu, editStu, addStu} from '../../api/api';
 
     export default {
         data() {
@@ -123,7 +118,7 @@
                 table: {
                     loading: false,
                     total: 0,
-                    size: 10,
+                    size: 25,
                     page: 1,
                     pageSize: 10,
                     data: []
@@ -134,41 +129,52 @@
                 editFormVisible: false,//编辑界面是否显示
                 editLoading: false,
                 editFormRules: {
-                    infoName: [
+                    stuName: [
                         {required: true, message: '请输入姓名', trigger: 'blur'}
-                    ],
-                    stuNumber: [
+                    ], stuNumber: [
                         {required: true, message: '请输入学号', trigger: 'blur'}
-                    ],
-                    stuContent: [
+                    ], classNum: [
                         {required: true, message: '请输入班级编号', trigger: 'blur'}
                     ]
                 },
                 //编辑界面数据
                 editForm: {
-                    infoName: '',
-                    stuNumber: '',
-                    theTime: '',
-                    endTime: '',
-                    stuContent: '',
-                    stuOff: '',
-                    stuReason: ''
+                    id: 0,
+                    className: '',
+                    classDepartment: '',
+                    classGrade: '',
+                    classNum: ''
+                },
+
+                addFormVisible: false,//新增界面是否显示
+                addLoading: false,
+                addFormRules: {
+                    stuName: [
+                        {required: true, message: '请输入姓名', trigger: 'blur'}
+                    ], stuNumber: [
+                        {required: true, message: '请输入学号', trigger: 'blur'}
+                    ], classNum: [
+                        {required: true, message: '请输入班级编号', trigger: 'blur'}
+                    ]
+                },
+                //新增界面数据
+                addForm: {
+                    className: '',
+                    classDepartment: '',
+                    classGrade: '',
+                    classNum: ''
                 }
 
             }
         },
         computed: {
-            getStuInfoList: function () {
+            getClassMessageList: function () {
                 var self = this, data = self.table.data, page = self.table.page, size = self.table.size, keyword = self.search.keyword;
                 var v = data.filter(function (p) {
-                    return (p.infoName && p.infoName.indexOf(keyword) !== -1 )
-                        || (p.stuName && p.stuName.indexOf(keyword) !== -1 )
-                        || (p.stuNumber && p.stuNumber.indexOf(keyword) !== -1 )
-                        || (p.theTime && p.theTime.indexOf(keyword) !== -1 )
-                        || (p.endTime && p.endTime.indexOf(keyword) !== -1 )
-                        || (p.stuContent && p.stuContent.indexOf(keyword) !== -1 )
-                        || (p.stuReason && p.stuReason.indexOf(keyword) !== -1 )
-                        || (p.stuOff && p.stuOff.indexOf(keyword) !== -1 );
+                    return (p.className && p.className.indexOf(keyword) !== -1 )
+                        || (p.classGrade && p.classGrade.indexOf(keyword) !== -1 )
+                        || (p.classDepartment && p.classDepartment.indexOf(keyword) !== -1 )
+                        || (p.classNum && p.classNum.indexOf(keyword) !== -1 );
                 });
                 self.total = v.length;
                 v = v.slice((page - 1) * size, page * size);
@@ -187,42 +193,33 @@
                 this.table.page = val;
             },
             //搜索 获取用户列表
-            getInfos() {
-                let p = this.$route.query;
-                if (p.stuNumber === undefined) {
-                    return;
-                }
+            getUsers() {
                 let para = {
-                    stuNumber: p.stuNumber
+                    stuNumber: this.filters.StuNumber
                 };
                 this.listLoading = true;
                 //获取数据接口
-                getStuInfoList(para).then((response) => {
-                    var d = response.data;
-                    if (d && d.code === 'SUCCESS') {
-                        this.table.data = d.data;
-                    } else {
-                        util.warning(d.msg);
-                    }
+                getStuMessageList(para).then((data) => {
+                    this.table.data = data;
                     this.listLoading = false;
                 });
             },
             //删除
-            stuInfoDel: function (index, row) {
+            stuMesDel: function (index, row) {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
                     this.listLoading = true;
                     //NProgress.start();
                     let para = {stuNumber: row.stuNumber};
-                    removeStuInfo(para).then((res) => {
+                    removeStu(para).then((res) => {
                         this.listLoading = false;
                         //NProgress.done();
                         this.$message({
                             message: '删除成功',
                             type: 'success'
                         });
-                        this.getInfos();
+                        this.getUsers();
                     });
                 }).catch(() => {
 
@@ -253,7 +250,7 @@
                             //NProgress.start();
                             let para = Object.assign({}, this.editForm);
 //							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-                            editStuInfo(para).then((res) => {
+                            editStu(para).then((res) => {
                                 this.editLoading = false;
                                 //NProgress.done();
                                 this.$message({
@@ -288,9 +285,7 @@
                                 });
                                 this.$refs['addForm'].resetFields();
                                 this.addFormVisible = false;
-                                console.log("=========");
                                 this.getUsers();
-                                console.log("====");
                             });
                         });
                     }
@@ -315,7 +310,7 @@
                             message: '删除成功',
                             type: 'success'
                         });
-                        this.getInfos();
+                        this.getUsers();
                     });
                 }).catch(() => {
 
@@ -323,7 +318,7 @@
             }
         },
         mounted() {
-            this.getInfos();
+            this.getUsers();
         }
     }
 

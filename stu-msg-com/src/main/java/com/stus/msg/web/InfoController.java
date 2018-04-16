@@ -72,4 +72,27 @@ public class InfoController {
     return res;
   }
 
+  /**
+   * 编辑
+   * @param stuInfo
+   * @return
+   */
+  @RequestMapping(value = "/edit", method = RequestMethod.POST)
+  public HttpResult edit(@RequestBody StuInfo stuInfo) {
+    HttpResult res = new HttpResult();
+    try {
+      Integer i = stuInfoService.editStuInfo(stuInfo);
+      if (i > 0) {
+        res.success();
+      } else {
+        res.fail();
+        log.error("编辑失败");
+      }
+    } catch (Exception e) {
+      log.error("修改学生后勤信息异常，error:", e);
+      res.fail();
+      res.setMsg(e.getMessage());
+    }
+    return res;
+  }
 }
