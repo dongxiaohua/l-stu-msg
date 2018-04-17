@@ -5,9 +5,9 @@ import Main from "./views/Main.vue";
 import StuList from "./views/stuModule/StuList.vue";
 import Message from "./views/stuModule/SetStuMes.vue";
 import InfoList from "./views/stuModule/InfoList.vue";
-import Page4 from "./views/classModule/Page4.vue";
+import ClassList from "./views/classModule/ClassList.vue";
 import Page5 from "./views/classModule/Page5.vue";
-import Page6 from "./views/adminModule/Page6.vue";
+import classMes from "./views/classModule/classMes.vue";
 
 let routes = [
     {
@@ -42,8 +42,8 @@ let routes = [
         name: '班级信息管理',
         iconCls: 'fa fa-id-card-o',
         children: [
-            {path: '/page4', component: Page4, name: '班级列表'},
-            {path: '/page6', component: Page4, name: '班级信息创建'},
+            {path: '/ClassList', component: ClassList, name: '班级列表'},
+            {path: '/classMes', component: classMes, name: '班级信息创建'},
             {path: '/page5', component: Page5, name: '学院列表'}
         ]
     },
@@ -54,7 +54,7 @@ let routes = [
         iconCls: 'fa fa-address-card',
         leaf: true,//只有一个节点
         children: [
-            {path: '/page6', component: Page6, name: '管理员管理模块'}
+            {path: '/page5', component: Page5, name: '管理员管理模块'}
         ]
     },
     // {

@@ -28,7 +28,7 @@ public class StuMessageServiceImpl implements StuMessageService {
    */
   @Override
   public List<StuMessage> findStuMessage(String stuNumber) {
-    List<StuMessage> stuMessageList = null;
+    List<StuMessage> stuMessageList;
     if (stuNumber != null && !"".equals(stuNumber)) {
       stuMessageList = stuMessageMapper.findStuById(stuNumber);
       stuMessageList.forEach(this::getClassName);

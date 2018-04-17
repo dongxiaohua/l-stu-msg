@@ -89,15 +89,16 @@ public class StuController {
     try {
       int i = stuMessageService.edit(stuMessage);
       if (i == 1) {
-        return res.success();
+        res.success();
       } else {
         log.error("编辑失败，id={}", stuMessage.getId());
-        return res.fail();
+        res.fail();
       }
     } catch (Exception e) {
       log.error("error:", "修改异常", e);
-      return res.fail();
+      res.fail();
     }
+    return res;
   }
 
 

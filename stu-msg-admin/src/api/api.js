@@ -95,3 +95,30 @@ export const editStuInfo = params => {
 export const removeStuInfo = params => {
     return axios.post(`${base}/info/delete`, params);
 };
+
+/**
+ * 获取班级列表
+ * @param params
+ * @returns {Promise.<TResult>}
+ */
+export const getClassMessageList = params => {
+    return axios.get(`${base}/class/getClassMessageList`, {params: params}).then(ref => ref.data);
+};
+
+/**
+ * 添加班级
+ * @param params
+ * @returns {*}
+ */
+export const addClass = params => {
+    return axios.post(`${base}/class/add`, params);
+};
+
+/**
+ * 编辑班级信息
+ * @param params
+ * @returns {*}
+ */
+export const editClass = params => {
+    return axios.post(`${base}/class/edit`, {params: params});
+};

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stus.msg.mapper.StuClassMapper">
+  <insert id="insert">
+    INSERT INTO stu_class (class_name,class_department,class_grade,class_num)
+    VALUES (#{className},#{classDepartment},#{classGrade},#{classNum})
+  </insert>
+
+  <!--<update id="edit">-->
+    <!--UPDATE stu_message SET stu_name = #{stuName},stu_sex = #{stuSex},stu_age = #{stuAge},stu_number = #{stuNumber},class_num = #{classNum}-->
+    <!--WHERE id = #{id}-->
+  <!--</update>-->
+
+
+
+</mapper>

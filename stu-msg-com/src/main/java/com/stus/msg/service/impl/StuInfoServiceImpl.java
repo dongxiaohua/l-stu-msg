@@ -42,9 +42,7 @@ public class StuInfoServiceImpl implements StuInfoService {
   public List<StuInfo> getInfoList(String stuNumber) {
     List<StuInfo> stuInfoList = stuInfoMapper.getInfoList(stuNumber);
     String stuName = stuMessageMapper.findStuNameByNumber(stuNumber);
-    stuInfoList.forEach(info -> {
-      info.setStuName(stuName);
-    });
+    stuInfoList.forEach(info -> info.setStuName(stuName));
     return stuInfoList;
   }
 
