@@ -120,5 +120,5 @@ export const addClass = params => {
  * @returns {*}
  */
 export const editClass = params => {
-    return axios.post(`${base}/class/edit`, {params: params});
+    return axios.post(`${base}/class/edit`, params);
 };

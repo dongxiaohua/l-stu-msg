@@ -64,6 +64,20 @@ public class ClassController {
   }
 
   /**
+   * 编辑班级信息
+   *
+   * @param stuClass
+   * @return
+   */
+  @RequestMapping(value = "/edit", method = RequestMethod.POST)
+  public HttpResult edit(@RequestBody StuClass stuClass) {
+    HttpResult res = new HttpResult();
+
+
+    return res;
+  }
+
+  /**
    * 添加班级后勤信息
    *
    * @return

@@ -7,7 +7,7 @@ import Message from "./views/stuModule/SetStuMes.vue";
 import InfoList from "./views/stuModule/InfoList.vue";
 import ClassList from "./views/classModule/ClassList.vue";
 import Page5 from "./views/classModule/Page5.vue";
-import classMes from "./views/classModule/classMes.vue";
+import classMes from "./views/classModule/ClassInfo.vue";
 
 let routes = [
     {

@@ -8,8 +8,11 @@
                 <el-date-picker type="date" placeholder="选择日期" v-model="form.theTime" style="width: 100%;"></el-date-picker>
             </el-col>
         </el-form-item>
-        <el-form-item label="年级" prop="classContent">
-            <el-input v-model="form.classContent"></el-input>
+        <el-form-item label="班级称号" prop="classNum">
+            <el-input v-model="form.classTitle"></el-input>
+        </el-form-item>
+        <el-form-item label="详情" prop="classContent">
+            <el-input type="textarea" v-model="form.classContent"></el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -28,6 +31,7 @@
                 form: {
                     classNum: '',
                     theTime: '',
+                    classTitle:'',
                     classContent: ''
                 },
 //				必填设置

@@ -21,5 +21,6 @@ public class ClassInfo {
   private int id;
   private String classNum;
   private Date theTime;
+  private String classTitle;
   private String classContent;
 }
