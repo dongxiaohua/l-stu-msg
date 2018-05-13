@@ -8,6 +8,7 @@ import InfoList from "./views/stuModule/InfoList.vue";
 import ClassList from "./views/classModule/ClassList.vue";
 import Page5 from "./views/classModule/Page5.vue";
 import classMes from "./views/classModule/ClassInfo.vue";
+import UserAdmin from "./views/adminModule/UserAdmin.vue";
 
 let routes = [
     {
@@ -54,7 +55,7 @@ let routes = [
         iconCls: 'fa fa-address-card',
         leaf: true,//只有一个节点
         children: [
-            {path: '/page5', component: Page5, name: '管理员管理模块'}
+            {path: '/UserAdmin', component: UserAdmin, name: '管理员管理模块'}
         ]
     },
     // {

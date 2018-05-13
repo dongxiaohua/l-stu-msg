@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let base = 'http://localhost:8080/student';
+let base = 'http://localhost:8080/stu';
 // let base = '';
 let header = {
     'content-type': 'application/json;charset=UTF-8'
@@ -121,4 +121,31 @@ export const addClass = params => {
  */
 export const editClass = params => {
     return axios.post(`${base}/class/edit`, params);
+};
+
+/**
+ * 获取用户信息列表
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const getStuUserList = params => {
+    return axios.get(`${base}/admin/list`);
+};
+
+/**
+ * 删除指定用户
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const removeStuUser = params => {
+    return axios.get(`${base}/admin/delete`);
+};
+
+/**
+ * 编辑用户信息
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const editStuUser = params => {
+    return axios.post(`${base}/admin/edit`, params);
 };
