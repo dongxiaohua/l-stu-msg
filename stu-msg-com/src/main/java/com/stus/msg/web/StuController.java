@@ -36,8 +36,7 @@ public class StuController {
   //required = false 代表如果不传，参数为null
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public List<StuMessage> listGet(@RequestParam(required = false) String stuNumber) {
-    List<StuMessage> stuMessages = stuMessageService.findStuMessage(stuNumber);
-    return stuMessages;
+    return stuMessageService.findStuMessage(stuNumber);
   }
 
 

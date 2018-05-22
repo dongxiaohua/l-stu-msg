@@ -3,11 +3,13 @@ package com.stus.msg.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
  * stu_user表
+ *
  * @author liujingfang
  * @date 2017/12/22
  */
@@ -16,9 +18,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StuUser {
-  private int id;
+  private Integer id;
   private String userName;
   private String passWord;
-  private int limit;
-
+  private String rights;
+  private Integer status;
+  private Date loginTime;
 }

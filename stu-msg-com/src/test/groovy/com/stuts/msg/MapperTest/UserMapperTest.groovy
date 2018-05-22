@@ -1,5 +1,6 @@
 package com.stuts.msg.MapperTest
 
+import com.stus.msg.entity.StuUser
 import com.stus.msg.mapper.StuUserMapper
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,4 +25,20 @@ class UserMapperTest extends Specification {
     println userMapper.find(name, pwd)
 
   }
+
+  def "findAll"() {
+    expect:
+    println "=========" + userMapper.findAll()
+  }
+
+  def "insert"() {
+    given:
+    def stuUser = new StuUser()
+    stuUser.userName = "201424430203"
+    stuUser.passWord = "201424430203"
+    stuUser.rights = "user"
+    expect:
+    println "==============" + userMapper.insert(stuUser)
+  }
+
 }

@@ -129,7 +129,7 @@ export const editClass = params => {
  * @returns {AxiosPromise}
  */
 export const getStuUserList = params => {
-    return axios.get(`${base}/admin/list`);
+    return axios.get(`${base}/admin/list`, {params: params}).then(ref => ref.data);
 };
 
 /**
@@ -138,7 +138,7 @@ export const getStuUserList = params => {
  * @returns {AxiosPromise}
  */
 export const removeStuUser = params => {
-    return axios.get(`${base}/admin/delete`);
+    return axios.get(`${base}/admin/delete`, params);
 };
 
 /**
@@ -148,4 +148,13 @@ export const removeStuUser = params => {
  */
 export const editStuUser = params => {
     return axios.post(`${base}/admin/edit`, params);
+};
+
+/**
+ * 添加用户
+ * @param params
+ * @returns {*|void}
+ */
+export const addStuUser = params => {
+    return axios.post(`${base}/admin/add`, params);
 };

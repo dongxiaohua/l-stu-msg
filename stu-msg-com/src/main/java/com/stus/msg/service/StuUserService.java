@@ -10,10 +10,17 @@ import java.util.List;
  */
 public interface StuUserService {
 
-    /**
-     * 查询所有用户信息
-     *
-     * @return
-     */
-    List<StuUser> findAllUser();
+  /**
+   * 查询所有用户信息
+   *
+   * @return
+   */
+  List<StuUser> findAllUser(String user);
+
+  /**
+   * 添加用户
+   *
+   * @return
+   */
+  Integer add(StuUser stuUser);
 }
