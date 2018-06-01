@@ -11,7 +11,6 @@ for (var key in networkInterfaces) {
         }
     });
 }
-
 module.exports = {
     build: {
         env: require('./prod.env'),
