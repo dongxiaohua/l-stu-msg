@@ -34,5 +34,10 @@ public class LoginController {
 
   }
 
+  @RequestMapping(value = "/")
+  public String home() {
+    return "index";
+  }
+
 
 }

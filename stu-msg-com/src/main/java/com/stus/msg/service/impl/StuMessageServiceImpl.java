@@ -1,11 +1,13 @@
 package com.stus.msg.service.impl;
 
+import com.google.common.base.Charsets;
 import com.stus.msg.entity.StuMessage;
 import com.stus.msg.mapper.StuMessageMapper;
 import com.stus.msg.service.StuMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -88,7 +90,7 @@ public class StuMessageServiceImpl implements StuMessageService {
 
   private String name(String s) {
     if ("2443".equals(s)) {
-      return "计算机";
+     return  "计算机";
     } else {
       return "";
     }

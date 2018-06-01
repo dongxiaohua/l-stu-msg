@@ -1,13 +1,24 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path');
+let os = require('os');
+let networkInterfaces = os.networkInterfaces();
+let ip;
+let url = "../../stu-msg-com/src/main/webapp/WEB-INF/view/dist";
+for (var key in networkInterfaces) {
+    networkInterfaces[key].forEach(item => {
+        if (!item.internal && item.family === 'IPv4') {
+            ip = item.address;
+        }
+    });
+}
 
 module.exports = {
     build: {
         env: require('./prod.env'),
-        index: path.resolve(__dirname, '../dist/index.html'),
-        assetsRoot: path.resolve(__dirname, '../dist'),
+        index: path.resolve(__dirname, url + '/index.html'),
+        assetsRoot: path.resolve(__dirname, url),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/vue-admin/',
+        assetsPublicPath: '/stu/',
         productionSourceMap: true,
         // Gzip off by default as many popular static hosts such as
         // Surge or Netlify already gzip all static assets for you.

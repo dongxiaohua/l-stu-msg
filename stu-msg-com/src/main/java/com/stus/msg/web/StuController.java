@@ -34,7 +34,7 @@ public class StuController {
    * @return
    */
   //required = false 代表如果不传，参数为null
-  @RequestMapping(value = "/list", method = RequestMethod.GET)
+  @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
   public List<StuMessage> listGet(@RequestParam(required = false) String stuNumber) {
     return stuMessageService.findStuMessage(stuNumber);
   }
