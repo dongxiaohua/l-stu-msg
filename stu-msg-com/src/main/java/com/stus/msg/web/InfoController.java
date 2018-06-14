@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * @author dongxiaohua
- *         Created on 2018/2/27.
+ * Created on 2018/2/27.
  */
 @RestController
 @RequestMapping("/info")
@@ -34,8 +35,14 @@ public class InfoController {
    * @return
    */
   @RequestMapping(value = "/add-stu", method = RequestMethod.POST)
-  public HttpResult addStuInfo(@RequestBody StuInfo stuInfo) {
+  public HttpResult addStuInfo(@RequestBody StuInfo stuInfo, HttpSession session) {
+    String right = String.valueOf(session.getAttribute("rights"));
     HttpResult res = new HttpResult();
+    if ("stu".equals(right) || "null".equals(right)) {
+      res.fail();
+      res.setMsg("对不起，你没有权限！");
+      return res;
+    }
     try {
       int i = stuInfoService.insert(stuInfo);
       if (i == 1) {
@@ -74,12 +81,19 @@ public class InfoController {
 
   /**
    * 编辑
+   *
    * @param stuInfo
    * @return
    */
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public HttpResult edit(@RequestBody StuInfo stuInfo) {
+  public HttpResult edit(@RequestBody StuInfo stuInfo, HttpSession session) {
+    String right = String.valueOf(session.getAttribute("rights"));
     HttpResult res = new HttpResult();
+    if ("stu".equals(right) || "null".equals(right)) {
+      res.fail();
+      res.setMsg("对不起，你没有权限！");
+      return res;
+    }
     try {
       Integer i = stuInfoService.editStuInfo(stuInfo);
       if (i > 0) {

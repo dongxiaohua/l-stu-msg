@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * 学生模块
  *
  * @author liujingfang
- *         Created on 2018/2/24.
+ * Created on 2018/2/24.
  */
 @RestController
 @RequestMapping("/stu")
@@ -47,8 +48,14 @@ public class StuController {
    * @return
    */
   @RequestMapping(value = "/remove", method = RequestMethod.GET)
-  public HttpResult remove(@RequestParam String stuNumber) {
+  public HttpResult remove(@RequestParam String stuNumber, HttpSession session) {
+    String right = String.valueOf(session.getAttribute("rights"));
     HttpResult res = new HttpResult();
+    if ("stu".equals(right) || "null".equals(right)) {
+      res.fail();
+      res.setMsg("对不起，你没有权限！");
+      return res;
+    }
     stuMessageService.deleteById(stuNumber);
     return res.success();
   }
@@ -60,8 +67,14 @@ public class StuController {
    * @return
    */
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public HttpResult add(@RequestBody StuMessage stuMessage) {
+  public HttpResult add(@RequestBody StuMessage stuMessage, HttpSession session) {
+    String right = String.valueOf(session.getAttribute("rights"));
     HttpResult res = new HttpResult();
+    if ("stu".equals(right) || "null".equals(right)) {
+      res.fail();
+      res.setMsg("对不起，你没有权限！");
+      return res;
+    }
     try {
       int i = stuMessageService.insert(stuMessage);
       if (i == 1) {
@@ -83,8 +96,14 @@ public class StuController {
    * @return
    */
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public HttpResult edit(@RequestBody StuMessage stuMessage) {
+  public HttpResult edit(@RequestBody StuMessage stuMessage, HttpSession session) {
     HttpResult res = new HttpResult();
+    String right = String.valueOf(session.getAttribute("rights"));
+    if ("stu".equals(right) || "null".equals(right)) {
+      res.fail();
+      res.setMsg("对不起，你没有权限！");
+      return res;
+    }
     try {
       int i = stuMessageService.edit(stuMessage);
       if (i == 1) {

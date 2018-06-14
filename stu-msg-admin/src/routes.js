@@ -5,6 +5,7 @@ import Main from "./views/Main.vue";
 import StuList from "./views/stuModule/StuList.vue";
 import Message from "./views/stuModule/SetStuMes.vue";
 import InfoList from "./views/stuModule/InfoList.vue";
+import ClassInfoList from "./views/classModule/ClassInfoList.vue";
 import ClassList from "./views/classModule/ClassList.vue";
 import Page5 from "./views/classModule/Page5.vue";
 import classMes from "./views/classModule/ClassInfo.vue";
@@ -45,7 +46,8 @@ let routes = [
         children: [
             {path: '/ClassList', component: ClassList, name: '班级列表'},
             {path: '/classMes', component: classMes, name: '班级信息创建'},
-            {path: '/page5', component: Page5, name: '学院列表'}
+            {path: '/class_info_list', component: ClassInfoList, name: '学生后勤信息列表', hidden: true},
+            {path: '/page5', component: Page5, name: '学院列表', hidden: true}
         ]
     },
     {

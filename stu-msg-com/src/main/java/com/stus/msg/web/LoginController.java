@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author liujingfang
  * @date 2017/12/22
@@ -24,9 +26,11 @@ public class LoginController {
 
   @RequestMapping(value = "/login", method = RequestMethod.POST)
   @ResponseBody
-  public LoginUser login(@RequestBody StuUser user) {
+  public LoginUser login(@RequestBody StuUser user, HttpSession session) {
     StuUser u = userMapper.find(user.getUserName(), user.getPassWord());
     if (u != null) {
+      session.setAttribute("userId", u.getId());
+      session.setAttribute("rights", u.getRights());
       return LoginUser.builder().msg("登录成功").code(200).user(u).build();
     } else {
       return LoginUser.builder().msg("登录失败").code(400).user(null).build();

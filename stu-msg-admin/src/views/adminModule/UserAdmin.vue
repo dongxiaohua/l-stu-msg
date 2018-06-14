@@ -264,12 +264,19 @@
 //							para.birth = (!para.birth || para.birth === '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
                             addStuUser(para).then((res) => {
                                 this.addLoading = false;
-                                console.log(res);
+                                console.log(res.data.code);
                                 //NProgress.done();
-                                this.$message({
-                                    message: '提交成功',
-                                    type: 'success'
-                                });
+                                if (res.data.code === "FAIL") {
+                                    this.$message({
+                                        message: '你没有权限！',
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    this.$message({
+                                        message: '提交成功',
+                                        type: 'success'
+                                    });
+                                }
                                 this.$refs['addForm'].resetFields();
                                 this.addFormVisible = false;
                                 this.getUsers();

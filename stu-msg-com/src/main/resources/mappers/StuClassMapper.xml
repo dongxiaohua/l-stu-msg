@@ -6,11 +6,10 @@
     VALUES (#{className},#{classDepartment},#{classGrade},#{classNum})
   </insert>
 
-  <!--<update id="edit">-->
-    <!--UPDATE stu_message SET stu_name = #{stuName},stu_sex = #{stuSex},stu_age = #{stuAge},stu_number = #{stuNumber},class_num = #{classNum}-->
-    <!--WHERE id = #{id}-->
-  <!--</update>-->
-
+  <update id="update">
+    UPDATE stu_class SET class_name = #{className},class_department = #{classDepartment},class_grade = #{classGrade},class_num = #{classNum}
+    WHERE id = #{id}
+  </update>
 
 
 </mapper>

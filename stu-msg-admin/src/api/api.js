@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// let base = 'http://localhost:8080/stu';
-let base = '/stu';
+let base = 'http://localhost:8080/stu';
+// let base = '/stu';
 let header = {
     'content-type': 'application/json;charset=UTF-8'
 };
@@ -156,4 +156,31 @@ export const editStuUser = params => {
  */
 export const addStuUser = params => {
     return axios.post(`${base}/admin/add`, params, {headers: header});
+};
+
+/**
+ * 修改班级后勤信息
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const editClassInfo = params => {
+    return axios.post(`${base}/`);
+};
+
+/**
+ * 获取班级后勤信息
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const getClassInfoList = params => {
+    return axios.post(`${base}/class/get-class-info`, params);
+};
+
+/**
+ * 添加班级后勤信息
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const addClassInfo = params => {
+    return axios.post(`${base}/class/add-info`, params);
 };

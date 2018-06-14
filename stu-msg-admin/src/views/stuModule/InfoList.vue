@@ -1,109 +1,109 @@
 <template>
-    <section>
-        <!--工具条-->
-        <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
-            <el-form :inline="true" :model="filters">
-                <!--<el-form-item>-->
-                <!--<el-input v-model="filters.StuNumber" placeholder="学号"></el-input>-->
-                <!--</el-form-item>-->
-                <!--<el-form-item>-->
-                <!--<el-button type="primary" v-on:click="getUsers">查询</el-button>-->
-                <!--</el-form-item>-->
-                <el-form-item>
-                    <router-link :to="'/form'" style="background-color: #717AD2;color: #f4f4f4;padding: 10px;border-radius:5px;">新增</router-link>
-                </el-form-item>
-            </el-form>
-        </el-col>
+  <section>
+    <!--工具条-->
+    <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-form :inline="true" :model="filters">
+        <!--<el-form-item>-->
+        <!--<el-input v-model="filters.StuNumber" placeholder="学号"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<el-form-item>-->
+        <!--<el-button type="primary" v-on:click="getUsers">查询</el-button>-->
+        <!--</el-form-item>-->
+        <el-form-item>
+          <router-link :to="'/form'" style="background-color: #717AD2;color: #f4f4f4;padding: 10px;border-radius:5px;">新增</router-link>
+        </el-form-item>
+      </el-form>
+    </el-col>
 
-        <!--列表-->
-        <el-table :data="getStuInfoList" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
-            <el-table-column type="selection" width="55">
-            </el-table-column>
-            <el-table-column type="index" width="60">
-            </el-table-column>
-            <el-table-column prop="infoName" width="120" label="信息名称" sortable>
-            </el-table-column>
-            <el-table-column prop="stuName" width="120" label="学生姓名" sortable>
-            </el-table-column>
-            <el-table-column prop="stuNumber" label="学生学号" sortable>
-            </el-table-column>
-            <el-table-column prop="stuOff" label="是否注销" sortable>
-                <template scope="scope">
-                    <span v-if="scope.row.stuOff === 1">是</span>
-                    <span v-else style="color: red">否</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="theTime" label="开始时间" sortable>
-            </el-table-column>
-            <el-table-column prop="endTime" label="结束时间" sortable>
-            </el-table-column>
-            <el-table-column prop="stuContent" min-width="110" label="内容">
-            </el-table-column>
-            <el-table-column prop="stuReason" min-width="100" label="详情">
-            </el-table-column>
-            <el-table-column label="操作" width="150">
-                <template scope="scope">
-                    <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <!--<el-button type="danger" size="small" @click="stuInfoDel(scope.$index, scope.row)">删除</el-button>-->
-                </template>
-            </el-table-column>
-        </el-table>
+    <!--列表-->
+    <el-table :data="getStuInfoList" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
+      <el-table-column type="selection" width="55">
+      </el-table-column>
+      <el-table-column type="index" width="60">
+      </el-table-column>
+      <el-table-column prop="infoName" width="120" label="信息名称" sortable>
+      </el-table-column>
+      <el-table-column prop="stuName" width="120" label="学生姓名" sortable>
+      </el-table-column>
+      <el-table-column prop="stuNumber" label="学生学号" sortable>
+      </el-table-column>
+      <el-table-column prop="stuOff" label="是否注销" sortable>
+        <template scope="scope">
+          <span v-if="scope.row.stuOff === 1">是</span>
+          <span v-else style="color: red">否</span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="theTime" label="开始时间" sortable>
+      </el-table-column>
+      <el-table-column prop="endTime" label="结束时间" sortable>
+      </el-table-column>
+      <el-table-column prop="stuContent" min-width="110" label="内容">
+      </el-table-column>
+      <el-table-column prop="stuReason" min-width="100" label="详情">
+      </el-table-column>
+      <el-table-column label="操作" width="150">
+        <template scope="scope">
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <!--<el-button type="danger" size="small" @click="stuInfoDel(scope.$index, scope.row)">删除</el-button>-->
+        </template>
+      </el-table-column>
+    </el-table>
 
-        <!--工具条-->
-        <el-col :span="24" class="toolbar">
-            <!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
-            <!--分页-->
-            <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="table.page"
-                    :page-sizes="[10, 25, 50, 100]"
-                    :page-size="table.size"
-                    layout="total, sizes, prev, pager, next, jumper"
-                    :total="table.data.length" style="float:right">
-            </el-pagination>
-        </el-col>
+    <!--工具条-->
+    <el-col :span="24" class="toolbar">
+      <!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
+      <!--分页-->
+      <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="table.page"
+              :page-sizes="[10, 25, 50, 100]"
+              :page-size="table.size"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="table.data.length" style="float:right">
+      </el-pagination>
+    </el-col>
 
-        <!--编辑界面-->
-        <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
-            <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-                <el-form-item label="信息名称" prop="infoName">
-                    <el-input v-model="editForm.infoName" placeholder="如：荣誉，请假，记过，挂科等"></el-input>
-                </el-form-item>
-                <el-form-item label="学生学号" prop="stuNumber">
-                    <el-input v-model="editForm.stuNumber"></el-input>
-                </el-form-item>
-                <el-form-item label="内容" prop="stuContent">
-                    <el-input type="textarea" v-model="editForm.stuContent"></el-input>
-                </el-form-item>
-                <el-form-item label="开始时间">
-                    <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="editForm.theTime" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="结束时间">
-                    <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="editForm.endTime" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="是否注销">
-                    <el-radio-group v-model="editForm.stuOff">
-                        <el-radio class="radio" :label="1">是</el-radio>
-                        <el-radio class="radio" :label="0">否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="原因 / 详情">
-                    <el-input type="textarea" v-model="editForm.stuReason"></el-input>
-                </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click.native="editFormVisible = false">取消</el-button>
-                <el-button type="primary" @click.native="editSubmit" :loading="editLoading">提交</el-button>
-            </div>
-        </el-dialog>
+    <!--编辑界面-->
+    <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false">
+      <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
+        <el-form-item label="信息名称" prop="infoName">
+          <el-input v-model="editForm.infoName" placeholder="如：荣誉，请假，记过，挂科等"></el-input>
+        </el-form-item>
+        <el-form-item label="学生学号" prop="stuNumber">
+          <el-input v-model="editForm.stuNumber"></el-input>
+        </el-form-item>
+        <el-form-item label="内容" prop="stuContent">
+          <el-input type="textarea" v-model="editForm.stuContent"></el-input>
+        </el-form-item>
+        <el-form-item label="开始时间">
+          <el-col :span="11">
+            <el-date-picker type="date" placeholder="选择日期" v-model="editForm.theTime" style="width: 100%;"></el-date-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="结束时间">
+          <el-col :span="11">
+            <el-date-picker type="date" placeholder="选择日期" v-model="editForm.endTime" style="width: 100%;"></el-date-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="是否注销">
+          <el-radio-group v-model="editForm.stuOff">
+            <el-radio class="radio" :label="1">是</el-radio>
+            <el-radio class="radio" :label="0">否</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="原因 / 详情">
+          <el-input type="textarea" v-model="editForm.stuReason"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click.native="editFormVisible = false">取消</el-button>
+        <el-button type="primary" @click.native="editSubmit" :loading="editLoading">提交</el-button>
+      </div>
+    </el-dialog>
 
 
-    </section>
+  </section>
 </template>
 
 <script>
@@ -161,14 +161,14 @@
             getStuInfoList: function () {
                 var self = this, data = self.table.data, page = self.table.page, size = self.table.size, keyword = self.search.keyword;
                 var v = data.filter(function (p) {
-                    return (p.infoName && p.infoName.indexOf(keyword) !== -1 )
-                        || (p.stuName && p.stuName.indexOf(keyword) !== -1 )
-                        || (p.stuNumber && p.stuNumber.indexOf(keyword) !== -1 )
-                        || (p.theTime && p.theTime.indexOf(keyword) !== -1 )
-                        || (p.endTime && p.endTime.indexOf(keyword) !== -1 )
-                        || (p.stuContent && p.stuContent.indexOf(keyword) !== -1 )
-                        || (p.stuReason && p.stuReason.indexOf(keyword) !== -1 )
-                        || (p.stuOff && p.stuOff.indexOf(keyword) !== -1 );
+                    return (p.infoName && p.infoName.indexOf(keyword) !== -1)
+                        || (p.stuName && p.stuName.indexOf(keyword) !== -1)
+                        || (p.stuNumber && p.stuNumber.indexOf(keyword) !== -1)
+                        || (p.theTime && p.theTime.indexOf(keyword) !== -1)
+                        || (p.endTime && p.endTime.indexOf(keyword) !== -1)
+                        || (p.stuContent && p.stuContent.indexOf(keyword) !== -1)
+                        || (p.stuReason && p.stuReason.indexOf(keyword) !== -1)
+                        || (p.stuOff && p.stuOff.indexOf(keyword) !== -1);
                 });
                 self.total = v.length;
                 v = v.slice((page - 1) * size, page * size);
@@ -180,7 +180,7 @@
             formatSex: function (row, column) {
                 return row.stuSex === 1 ? '男' : row.stuSex === 0 ? '女' : '未知';
             },
-            handleSizeChange (v){
+            handleSizeChange(v) {
                 this.table.size = v;
             },
             handleCurrentChange(val) {
@@ -218,10 +218,19 @@
                     removeStuInfo(para).then((res) => {
                         this.listLoading = false;
                         //NProgress.done();
-                        this.$message({
-                            message: '删除成功',
-                            type: 'success'
-                        });
+                        console.log(res.data.code);
+                        if (res.data.code === "SUCCESS") {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message({
+                                message: '你没有权限',
+                                type: 'warning'
+                            });
+                        }
+
                         this.getInfos();
                     });
                 }).catch(() => {

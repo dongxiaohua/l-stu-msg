@@ -1,5 +1,6 @@
 package com.stus.msg.web;
 
+import com.google.common.collect.Lists;
 import com.stus.msg.entity.StuUser;
 import com.stus.msg.service.StuUserService;
 import com.stus.msg.util.HttpResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -31,8 +33,16 @@ public class AdminController {
    * @return
    */
   @RequestMapping(value = "/list", method = RequestMethod.GET)
-  public List<StuUser> list(@RequestParam(required = false) String userName) {
-    return stuUserService.findAllUser(userName);
+  public List<StuUser> list(@RequestParam(required = false) String userName, HttpSession session) {
+    String right = String.valueOf(session.getAttribute("rights"));
+    List<StuUser> stuUserList = Lists.newArrayList();
+    if ("root".equals(right)) {
+      stuUserList = stuUserService.findAllUser(userName);
+      return stuUserList;
+    } else {
+      return stuUserList;
+    }
+
   }
 
   /**
@@ -41,8 +51,14 @@ public class AdminController {
    * @return
    */
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public HttpResult add(@RequestBody StuUser stuUser) {
+  public HttpResult add(@RequestBody StuUser stuUser, HttpSession session) {
+    String right = String.valueOf(session.getAttribute("rights"));
     HttpResult res = new HttpResult();
+    if (!"root".equals(right)) {
+      res.fail();
+      res.setMsg("对不起，您没有权限！");
+      return res;
+    }
     try {
       if (stuUserService.add(stuUser) > 0) {
         res.success();

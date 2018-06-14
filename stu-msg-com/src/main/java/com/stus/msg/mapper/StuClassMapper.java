@@ -37,4 +37,12 @@ public interface StuClassMapper {
    */
   Integer insert(StuClass stuClass);
 
+  /**
+   * 编辑班级信息
+   *
+   * @param stuClass
+   * @return
+   */
+  Integer update(StuClass stuClass);
+
 }
